@@ -25,3 +25,63 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.cl-formButtonPrimary {
+  font-size: 14px;
+  text-transform: none;
+  background-color: #32A852;
+}
+ 
+.cl-formButtonPrimary:hover,
+.cl-formButtonPrimary:focus,
+.cl-formButtonPrimary:active {
+  background-color: #32A852;
+  opacity: 0.95;
+}
+
+.cl-footerActionLink{
+  color: #32A852;
+}
+.cl-footerActionLink:hover,
+.cl-footerActionLink:focus,
+.cl-footerActionLink:active {
+  color: #32A852;
+}
+
+.cl-internal-b3fm6y{
+  background-color: #32A852;
+}
+
+.cl-profileSectionPrimaryButton{
+  color: #32A852;
+}
+
+.cl-avatarImageActionsUpload{
+  color: #32A852;
+}
+
+.cl-avatarImageActionsUpload:hover,
+.cl-avatarImageActionsUpload:focus,
+.cl-avatarImageActionsUpload:active{
+  color: #32A852;
+}
+
+.cl-badge{
+  background-color: #32a8526e;
+  color: #1e6a32;
+}
+.cl-avatarBox{
+  width: 35px;
+  height: 35px;
+}
+
+.cl-formButtonReset{
+  color: #1e6a32;
+}
+
+.cl-formButtonReset:hover,
+.cl-formButtonReset:active,
+.cl-formButtonReset:focus{
+  
+  background-color: #32a8526e;
+}
