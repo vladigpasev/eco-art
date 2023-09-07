@@ -40,7 +40,7 @@ export default function EventCard({ event }) {
       if (response.status === 200) {
         console.log('Guests added successfully:', data.message);
         setPaymentVisibility(false);
-        setSuccessMessage('Thank you for your purchase! More information has been sent to your email.');
+        setSuccessMessage('Благодарим Ви за поръчката! Ще получите повече информация на Вашия имейл.');
 
         setTimeout(() => {
           setSuccessMessage('');
@@ -57,7 +57,7 @@ export default function EventCard({ event }) {
   useEffect(() => {
   async function fetchRegisteredEvents() {
     try {
-      const res = await fetch(`http://localhost:3000/api/events/check_registered`);
+      const res = await fetch(`/api/events/check_registered`);
       const response = await res.json();
       console.log({response});
       const registeredEventsMap = {};
@@ -143,11 +143,11 @@ console.log(JSON.stringify(event));
         </figure>
         <div className="card-body p-4">
           <h2 className="card-title text-2xl font-semibold mb-2">{event.title}</h2>
-          <i><p className='font-light font-italic '>Mentor: {event.mentor}</p></i>
+          <i><p className='font-light font-italic '>Ментор: {event.mentor}</p></i>
           <p className="text-base text-gray-700 ">{event.description}</p>
           <div className="card-actions flex justify-between mt-5 items-center">
             <div className='flex flex-col justify-center'>
-              <div className='text-[#237a39] font-semibold text-lg'>{event.price} BGN</div>
+              <div className='text-[#237a39] font-semibold text-lg'>{event.price} лв.</div>
               <div className="text-[#237a39] font-light text-lg">{event.date}</div>
             </div>
             <button
@@ -155,7 +155,7 @@ console.log(JSON.stringify(event));
     className={`btn btn-primary ${registeredEvents[event._id] ? 'cursor-not-allowed opacity-50' : 'bg-[#237a39] border-none hover:bg-[#237a39db] text-[#edf2ef]'} rounded py-2 px-4 transition duration-300 ease-in-out`}
     onClick={() => !registeredEvents[event._id] && setPopupVisibility(true)}
   >
-    {registeredEvents[event._id] ? 'Signed up' : 'Sign up'}
+    {registeredEvents[event._id] ? 'Регистриран' : 'Регистрация'}
   </button>
           </div>
         </div>
@@ -167,13 +167,13 @@ console.log(JSON.stringify(event));
           <div className="bg-white rounded-lg w-full md:w-1/2 p-4 md:p-8 h-full md:h-auto overflow-y-auto">
           <div className="bg-gray-100 rounded p-4 my-4">
               <div className="flex justify-between items-center">
-                <p className="text-lg font-semibold">Event: {event.title} ({event.date})</p>
+                <p className="text-lg font-semibold">Събитие: {event.title} ({event.date})</p>
               </div>
             </div>
 
 
-            <h2 className="text-2xl mb-4">Attendees</h2>
-            <h2 className="text-lg mb-4 mt-5">Organizer</h2>
+            <h2 className="text-2xl mb-4">Участници</h2>
+            <h2 className="text-lg mb-4 mt-5">Организатор</h2>
             <div className="flex flex-col md:flex-row items-center my-2">
               <input
                 type="text"
@@ -188,7 +188,7 @@ console.log(JSON.stringify(event));
                 value={user.primaryEmailAddress.emailAddress}
               />
             </div>
-            {attendees.length > 0 && <h2 className="text-lg mb-4 mt-5">Guest Attendees</h2>}
+            {attendees.length > 0 && <h2 className="text-lg mb-4 mt-5">Гости участници</h2>}
             {attendees.map((attendee, index) => (
               <div key={index} className="flex flex-col md:flex-row items-center my-2">
                 <input
@@ -213,10 +213,10 @@ console.log(JSON.stringify(event));
                 </button>
               </div>
             ))}
-            <button className="btn btn-accent w-full md:w-auto" onClick={addAttendee}>+ Add More</button>
+            <button className="btn btn-accent w-full md:w-auto" onClick={addAttendee}>+ Добави още</button>
             <div className="flex flex-col md:flex-row gap-4 mt-4">
-              <button className="btn btn-error w-full md:w-auto mb-2 md:mb-0" onClick={() => setPopupVisibility(false)}>Cancel</button>
-              <button className="btn btn-success w-full md:w-auto" onClick={handleNextClick}>Payment</button>
+              <button className="btn btn-error w-full md:w-auto mb-2 md:mb-0" onClick={() => setPopupVisibility(false)}>Откажи</button>
+              <button className="btn btn-success w-full md:w-auto" onClick={handleNextClick}>Плащане</button>
             </div>
           </div>
         </div>
@@ -226,28 +226,28 @@ console.log(JSON.stringify(event));
 
       {isPaymentVisible && (
       <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black z-50 overflow-hidden">
-      <div className="bg-white rounded-lg md:w-1/2 w-full h-full md:h-auto p-8 overflow-y-auto"> {/* Добавих md:w-1/2 и md:h-auto */}
-        <h2 className="text-2xl mb-4">Select Payment Method</h2>
+      <div className="bg-white rounded-lg md:w-1/2 w-full h-full md:h-auto p-8 overflow-y-auto"> 
+        <h2 className="text-2xl mb-4">Избери метод на плащане</h2>
 
             <div className="bg-gray-100 rounded p-4 my-4">
               <div className="flex justify-between items-center">
-                <p className="text-lg font-semibold">Event: {event.title} ({event.date})</p>
+                <p className="text-lg font-semibold">Събитие: {event.title} ({event.date})</p>
               </div>
             </div>
 
             <div className="bg-gray-100 rounded p-4 my-4">
               <div className="flex justify-between items-center">
-                <p className="text-lg font-semibold">Base Price:</p>
-                <p className="text-lg font-semibold">{event.price} BGN</p>
+                <p className="text-lg font-semibold">Основна цена:</p>
+                <p className="text-lg font-semibold">{event.price} лв.</p>
               </div>
               <div className="flex justify-between items-center">
-                <p className="text-lg font-semibold">Number of Attendees:</p>
+                <p className="text-lg font-semibold">Брой участници:</p>
                 <p className="text-lg font-semibold">{attendees.length + 1}</p>
               </div>
               <hr className="my-2" />
               <div className="flex justify-between items-center">
-                <p className="text-lg font-semibold">Total Price:</p>
-                <p className="text-lg font-semibold text-[#237a39]">{totalPrice} BGN</p>
+                <p className="text-lg font-semibold">Обща сума:</p>
+                <p className="text-lg font-semibold text-[#237a39]">{totalPrice} лв.</p>
               </div>
             </div>
 
@@ -257,19 +257,19 @@ console.log(JSON.stringify(event));
               disabled={isLoading}
               onClick={addAttendeesToEvent}
             >
-              {isLoading ? 'Loading...' : 'Payment on the Spot'}
+              {isLoading ? 'Зареждане...' : 'Плащане на място'}
             </button>
             <button
               className="btn btn-primary"
               disabled={isLoading}
               onClick={addAttendeesToEvent}
             >
-              {isLoading ? 'Loading...' : 'Card Payment'}
+              {isLoading ? 'Зареждане...' : 'Плащане с карта'}
             </button>
           </div>
             <div className="flex gap-4 mt-4">
-            <button className="btn btn-neutral" onClick={handlePaymentBack}>Back</button>
-            <button className="btn btn-error " onClick={() => setPaymentVisibility(false)}>Cancel</button>
+            <button className="btn btn-neutral" onClick={handlePaymentBack}>Назад</button>
+            <button className="btn btn-error " onClick={() => setPaymentVisibility(false)}>Откажи</button>
             </div>
           </div>
         </div>

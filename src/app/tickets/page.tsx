@@ -29,7 +29,7 @@ export default async function Tickets() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-semibold text-center py-20 text-[#237a39]">
-        My Events
+        Моите събития
       </h1>
 
       <div className="flex flex-wrap justify-center gap-5">
