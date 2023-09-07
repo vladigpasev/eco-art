@@ -77,7 +77,7 @@ async function sendEmail(userId: string, attendees: Array<{ name: string, email:
             <p><b>Time:</b> 14:00</p>
             <p><b>Location:</b> Devin</p>
             <p>To make your experience seamless, we have prepared a digital ticket for you.</p>
-            <a href="http://localhost:3002/?event_id=${eventDetails._id}&user_id=${userId}" class="button">Access Your Ticket</a>
+            <a href="https://tickets.eco-art.xyz/?event_id=${eventDetails._id}&user_id=${userId}" class="button">Access Your Ticket</a>
         </div>
     </div>
 </body>
@@ -88,7 +88,7 @@ const mainUserInfo = await transporter.sendMail({
     from: '"Eco Art" <no-reply@eco-art.xyz>',
     to: mainUserEmail,
     subject: "Your Ticket to Eco Art Event",
-    text: `Hello ${mainUserName}, you are invited to the Eco Art event. Please find your ticket at http://localhost:3002/?event_id=${eventDetails._id}&user_id=${userId}`,
+    text: `Hello ${mainUserName}, you are invited to the Eco Art event. Please find your ticket at https://tickets.eco-art.xyz/?event_id=${eventDetails._id}&user_id=${userId}`,
     html: eventDetailsHTML,
 });
 

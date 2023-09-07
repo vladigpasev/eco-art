@@ -17,14 +17,14 @@ export default function TicketCard({ event }) {
           <p className="text-base text-gray-700">{event.description}</p>
           <div className="card-actions flex justify-between mt-5 items-center">
             <div className='flex flex-col justify-center'>
-              <div className='text-[#237a39] font-semibold text-lg'>{event.price} BGN</div>
+              <div className='text-[#237a39] font-semibold text-lg'>{event.price} лв.</div>
               <div className="text-[#237a39] font-light text-lg">{event.date}</div>
             </div>
             <button
           className="btn btn-primary bg-[#237a39] border-none hover:bg-[#237a39db] text-[#edf2ef] rounded py-2 px-4 transition duration-300 ease-in-out"
           onClick={() => setPopupVisibility(true)}
         >
-          Ticket
+          Билет
         </button>
           </div>
         </div>
@@ -36,16 +36,16 @@ export default function TicketCard({ event }) {
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div className="bg-white p-6 rounded-xl shadow-2xl w-11/12 md:w-3/5">
       <div className="border rounded-xl p-6 bg-[#f7f9fc] shadow-inner">
-        <h2 className="text-2xl font-bold mb-4 text-center border-b pb-2">Your Ticket</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center border-b pb-2">Вашият билет</h2>
         <div className="flex flex-col gap-5 md:gap-0 md:flex-row justify-between items-center mt-4">
           <div className="flex flex-col space-y-2 text-lg">
-            <p><span className="font-semibold">Event:</span> {event.title}</p>
-            <p><span className="font-semibold">Date:</span> {event.date}</p>
-            <p><span className="font-semibold">Mentor:</span> {event.mentor}</p>
+            <p><span className="font-semibold">Събитие:</span> {event.title}</p>
+            <p><span className="font-semibold">Дата:</span> {event.date}</p>
+            <p><span className="font-semibold">Ментор:</span> {event.mentor}</p>
           </div>
           <div className="md:w-1/3">
           <QRCode 
-  value={`http://172.20.10.2:3001/validate?event_id=${event._id}&user_id=${userId}`} 
+  value={`https://admin.eco-art.xyz/validate?event_id=${event._id}&user_id=${userId}`} 
   size={128} 
 />
 
@@ -54,7 +54,7 @@ export default function TicketCard({ event }) {
       </div>
       <div className="text-center mt-6">
         <button className="btn btn-primary bg-[#237a39] border-none hover:bg-[#237a39db] text-[#edf2ef] rounded py-2 px-4 transition duration-300 ease-in-out" onClick={() => setPopupVisibility(false)}>
-          Close
+          Затвори
         </button>
       </div>
     </div>

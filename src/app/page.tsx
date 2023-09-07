@@ -21,7 +21,7 @@ export default async function Home() {
   return (
     <div>
       <h1 className="text-4xl font-semibold text-center py-20 text-[#237a39]">
-        Upcoming events
+        Предстоящи събития
       </h1>
 
       <div className="flex flex-wrap justify-center gap-5">

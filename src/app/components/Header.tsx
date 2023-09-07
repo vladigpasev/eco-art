@@ -17,8 +17,8 @@ function Header() {
   <div className="flex gap-5">
     <div className="flex-none">
       <ul className="menu menu-horizontal px-1 ml-2 lg:ml-8">
-        <li><a href='/' className="text-xs sm:text-normal">Upcoming Events</a></li>
-        <li><a href='/tickets' className="text-xs sm:text-normal">My Events</a></li>
+        <li><a href='/' className="text-xs sm:text-normal">Предстоящи събития</a></li>
+        <li><a href='/tickets' className="text-xs sm:text-normal">Моите събития</a></li>
       </ul>
     </div>
     <UserButton afterSignOutUrl="/" />
