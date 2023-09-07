@@ -1,7 +1,6 @@
 "use client"
 import React from 'react'
 import { UserButton } from "@clerk/nextjs";
-import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
 
 function Header() {
@@ -18,8 +17,8 @@ function Header() {
   <div className="flex gap-5">
     <div className="flex-none">
       <ul className="menu menu-horizontal px-1 ml-2 lg:ml-8">
-        <li><Link href='/' className="text-xs sm:text-normal">Upcoming Events</Link></li>
-        <li><Link href='/tickets' className="text-xs sm:text-normal">My Events</Link></li>
+        <li><a href='/' className="text-xs sm:text-normal">Upcoming Events</a></li>
+        <li><a href='/tickets' className="text-xs sm:text-normal">My Events</a></li>
       </ul>
     </div>
     <UserButton afterSignOutUrl="/" />

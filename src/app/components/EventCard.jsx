@@ -16,14 +16,14 @@ export default function EventCard({ event }) {
 
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const [isLoading, setIsLoading] = useState(false); // New state for loading
-  const [successMessage, setSuccessMessage] = useState(''); // New state for success message
+  const [isLoading, setIsLoading] = useState(false); 
+  const [successMessage, setSuccessMessage] = useState('');
 
   const [registeredEvents, setRegisteredEvents] = useState({}); 
 
   async function addAttendeesToEvent() {
     try {
-      setIsLoading(true); // Set loading state to true
+      setIsLoading(true);
 
       const response = await fetch('/api/events/add_participants/', {
         method: 'PATCH',
@@ -35,21 +35,21 @@ export default function EventCard({ event }) {
 
       const data = await response.json();
 
-      setIsLoading(false); // Set loading state to false
+      setIsLoading(false);
 
       if (response.status === 200) {
         console.log('Guests added successfully:', data.message);
-        setPaymentVisibility(false); // Close the payment popup
-        setSuccessMessage('Thank you for your purchase! A ticket has been sent to your email.'); // Set success message
+        setPaymentVisibility(false);
+        setSuccessMessage('Thank you for your purchase! More information has been sent to your email.');
 
         setTimeout(() => {
-          setSuccessMessage(''); // Clear the message after 5 seconds
+          setSuccessMessage('');
         }, 5000);
       } else {
         console.error('Failed to add guests:', data.error);
       }
     } catch (error) {
-      setIsLoading(false); // Set loading state to false
+      setIsLoading(false);
       console.error('There was an error adding the guests:', error);
     }
   }
@@ -59,6 +59,7 @@ export default function EventCard({ event }) {
     try {
       const res = await fetch(`http://localhost:3000/api/events/check_registered`);
       const response = await res.json();
+      console.log({response});
       const registeredEventsMap = {};
       response.events.forEach(event => {
         registeredEventsMap[event._id] = true;
@@ -88,7 +89,7 @@ export default function EventCard({ event }) {
       document.body.style.overflow = 'auto';
     }
 
-    return () => { // Възстановяване на стиловете при unmount
+    return () => {
       document.body.style.overflow = 'auto';
     };
   }, [isPopupVisible, isPaymentVisible]);
@@ -108,11 +109,9 @@ export default function EventCard({ event }) {
     };
 
     setEventData(data);
-    setAttendees(filteredAttendees);  // update the state to remove empty names
+    setAttendees(filteredAttendees);
     setPopupVisibility(false);
     setPaymentVisibility(true);
-
-    /// console.log(JSON.stringify(data));
   }
 
   function handlePaymentBack() {
@@ -133,41 +132,9 @@ export default function EventCard({ event }) {
     newAttendees[index][field] = value;
     setAttendees(newAttendees);
   }
-  function validateCardDetails() {
-    let valid = true;
-    const newErrors = {};
 
-    if (!/^\d{16}$/.test(cardDetails.cardNumber)) {
-      newErrors.cardNumber = 'Card Number must have 16 digits';
-      valid = false;
-    }
-
-    if (!/^[a-zA-Z\s]+$/.test(cardDetails.cardHolderName)) {
-      newErrors.cardHolderName = 'Card Holder Name must contain only alphabets and spaces';
-      valid = false;
-    }
-
-    if (!/^(\d{2}\/\d{2})$/.test(cardDetails.expiry)) {
-      newErrors.expiry = 'Expiry Date must be in MM/YY format';
-      valid = false;
-    }
-
-    if (!/^\d{3}$/.test(cardDetails.cvv)) {
-      newErrors.cvv = 'CVV must have 3 digits';
-      valid = false;
-    }
-
-    setErrors(newErrors);
-    return valid;
-  }
-
-  function handlePayment() {
-    if (validateCardDetails()) {
-      console.log('Valid card details');
-      // Continue with payment
-    }
-  }
-
+console.log(JSON.stringify(registeredEvents));
+console.log(JSON.stringify(event));
   return (
     <>
       <div key={event._id} className="card rounded-lg w-full p-4 m-2 bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 ease-in-out sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
@@ -176,7 +143,8 @@ export default function EventCard({ event }) {
         </figure>
         <div className="card-body p-4">
           <h2 className="card-title text-2xl font-semibold mb-2">{event.title}</h2>
-          <p className="text-base text-gray-700">{event.description}</p>
+          <i><p className='font-light font-italic '>Mentor: {event.mentor}</p></i>
+          <p className="text-base text-gray-700 ">{event.description}</p>
           <div className="card-actions flex justify-between mt-5 items-center">
             <div className='flex flex-col justify-center'>
               <div className='text-[#237a39] font-semibold text-lg'>{event.price} BGN</div>
@@ -261,14 +229,12 @@ export default function EventCard({ event }) {
       <div className="bg-white rounded-lg md:w-1/2 w-full h-full md:h-auto p-8 overflow-y-auto"> {/* Добавих md:w-1/2 и md:h-auto */}
         <h2 className="text-2xl mb-4">Select Payment Method</h2>
 
-            {/* Display Event Title and Date */}
             <div className="bg-gray-100 rounded p-4 my-4">
               <div className="flex justify-between items-center">
                 <p className="text-lg font-semibold">Event: {event.title} ({event.date})</p>
               </div>
             </div>
 
-            {/* Display Price Information */}
             <div className="bg-gray-100 rounded p-4 my-4">
               <div className="flex justify-between items-center">
                 <p className="text-lg font-semibold">Base Price:</p>
@@ -310,11 +276,10 @@ export default function EventCard({ event }) {
       )}
 
 {successMessage && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black z-50">
-          <div className="bg-white rounded-lg w-1/2 p-8 text-center">
-            <h2 className="text-2xl mb-4">{successMessage}</h2>
-          </div>
-        </div>
+        <div className="alert alert-success fixed bottom-0 right-0 m-5 z-50 w-fit">
+        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span>{successMessage}</span>
+      </div>
       )}
     </>
   );

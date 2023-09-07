@@ -1,9 +1,11 @@
 "use client"
 import React, { useState } from 'react';
+import QRCode from 'react-qr-code';
+import { useAuth } from '@clerk/nextjs';
 
 export default function TicketCard({ event }) {
   const [isPopupVisible, setPopupVisibility] = useState(false);
-
+  const { userId } = useAuth();
   return (
     <>
       <div key={event._id} className="card rounded-lg w-full p-4 m-2 bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 ease-in-out sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
@@ -35,17 +37,18 @@ export default function TicketCard({ event }) {
     <div className="bg-white p-6 rounded-xl shadow-2xl w-11/12 md:w-3/5">
       <div className="border rounded-xl p-6 bg-[#f7f9fc] shadow-inner">
         <h2 className="text-2xl font-bold mb-4 text-center border-b pb-2">Your Ticket</h2>
-        <div className="flex flex-col md:flex-row justify-between items-center mt-4">
+        <div className="flex flex-col gap-5 md:gap-0 md:flex-row justify-between items-center mt-4">
           <div className="flex flex-col space-y-2 text-lg">
             <p><span className="font-semibold">Event:</span> {event.title}</p>
             <p><span className="font-semibold">Date:</span> {event.date}</p>
-            <p><span className="font-semibold">Mentor:</span> Dummy Mentor</p>
-            <p><span className="font-semibold">Payment Type:</span> Dummy</p>
-            <p><span className="font-semibold">Payment Status:</span> Dummy</p>
-            <p><span className="font-semibold">Location:</span> Dummy Location</p>
+            <p><span className="font-semibold">Mentor:</span> {event.mentor}</p>
           </div>
           <div className="md:w-1/3">
-            {/* <QRCode value="Dummy QR Code Value" size={128} /> */}
+          <QRCode 
+  value={`http://172.20.10.2:3001/validate?event_id=${event._id}&user_id=${userId}`} 
+  size={128} 
+/>
+
           </div>
         </div>
       </div>
