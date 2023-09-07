@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255,255,255;
@@ -18,12 +21,9 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #faf9f5;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 .cl-formButtonPrimary {
@@ -70,11 +70,6 @@ body {
   background-color: #32a8526e;
   color: #1e6a32;
 }
-.cl-avatarBox{
-  width: 35px;
-  height: 35px;
-}
-
 .cl-formButtonReset{
   color: #1e6a32;
 }
@@ -84,4 +79,8 @@ body {
 .cl-formButtonReset:focus{
   
   background-color: #32a8526e;
+}
+
+.cl-internal-17ydaof{
+  box-shadow: rgba(115, 33, 0, 0.16) 0px 24px 48px;
 }

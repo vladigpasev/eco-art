@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import { Db, MongoClient } from 'mongodb';
 
 // Validate environment variables
 if (!process.env.MONGODB_URI) {
@@ -6,7 +6,7 @@ if (!process.env.MONGODB_URI) {
 }
 
 const uri = process.env.MONGODB_URI;
-let cachedDb = null;
+let cachedDb:Db = (null as any) as Db;
 
 async function connectToDatabase() {
   if (cachedDb) {
@@ -15,8 +15,7 @@ async function connectToDatabase() {
 
   try {
     const client = await MongoClient.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      
     });
 
     // Validate that the URL actually includes a database name

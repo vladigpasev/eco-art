@@ -20,11 +20,11 @@ export default async function Home() {
  
   return (
     <div>
-      <h1 className="text-4xl font-semibold text-center my-5 text-[#237a39]">
+      <h1 className="text-4xl font-semibold text-center py-20 text-[#237a39]">
         Upcoming events
       </h1>
 
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center gap-5">
         {eventsData.map((event:any) => (
           <EventCard key={event._id} event={event} />
         ))}

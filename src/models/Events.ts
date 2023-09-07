@@ -6,5 +6,6 @@ export interface EventData {
     date: string;
     image: string;
     participants: string[];
+    guestParticipants: Array<{ name: string, email: string, mainParticipant: string }>
   }
   
