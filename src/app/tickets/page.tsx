@@ -4,7 +4,7 @@ import { EventData } from '@/models/Events';
 import TicketCard from '../components/TicketCard';
 import { auth } from '@clerk/nextjs';
 
-export async function getEvents() {
+ async function getEvents() {
   const { userId } : { userId: string | null } = auth();
   
 
