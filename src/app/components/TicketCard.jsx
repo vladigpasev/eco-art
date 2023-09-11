@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import QRCode from 'react-qr-code';
 import { useAuth } from '@clerk/nextjs';
+import Image from 'next/image';
 
 export default function TicketCard({ event }) {
   const [isPopupVisible, setPopupVisibility] = useState(false);
