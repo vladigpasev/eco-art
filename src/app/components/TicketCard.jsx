@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import QRCode from 'react-qr-code';
 import { useAuth } from '@clerk/nextjs';
-import Image from 'next/image';
 
 export default function TicketCard({ event }) {
   const [isPopupVisible, setPopupVisibility] = useState(false);
@@ -11,7 +10,7 @@ export default function TicketCard({ event }) {
     <>
       <div key={event._id} className="card rounded-lg w-full p-4 m-2 bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 ease-in-out sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
       <figure>
-          <Image className="w-full h-48 object-cover rounded-t-lg" src={event.image} alt="Art" />
+          <img className="w-full h-48 object-cover rounded-t-lg" src={event.image} alt="Art" />
         </figure>
         <div className="card-body p-4">
           <h2 className="card-title text-2xl font-semibold mb-2">{event.title}</h2>
