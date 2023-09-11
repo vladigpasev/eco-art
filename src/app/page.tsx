@@ -4,7 +4,7 @@ import { EventData } from '@/models/Events';
 import EventCard from './components/EventCard';
 
 
-export async function getEvents() {
+ async function getEvents() {
   const db = await connectToDatabase();
 
   const eventsCollection = db.collection('events');
